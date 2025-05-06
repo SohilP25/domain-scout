@@ -1,1 +1,32 @@
+/*
+* DomainScout - A domain information lookup tool
+* 
+* Color Palette:
+* Primary Colors:
+* - Slate Blue: #5B6E94 (Primary actions, header text)
+* - Darker Slate: #4A5D83 (Hover states)
+* 
+* Accent Colors:
+* - Teal: #4A9C96 (Toggle button, interactive elements)
+* 
+* Text Colors:
+* - Primary Text: #2D3142 (Main content)
+* - Secondary Text: #6E7582 (Labels, secondary information)
+* 
+* Background Colors:
+* - Light Gray: #F5F7FA (Background gradient start)
+* - White: #FFFFFF (Background gradient middle)
+* - Light Gray: #E2E8F0 (Background gradient end)
+* 
+* UI Elements:
+* - Input Border: #F5F7FA
+* - Hover Border: #4A9C96/50 (50% opacity)
+* - Card Background: white/80 (80% opacity)
+* 
+* Transitions:
+* - Duration: 300ms (buttons, inputs)
+* - Duration: 500ms (layout changes)
+* - Easing: easeOut
+*/
+
 @import "tailwindcss";

@@ -10,41 +10,47 @@ const DomainInfoTable = ({ data }) => {
   };
 
   return (
-    <table className="w-full divide-y divide-gray-200">
+    <table className="min-w-full table-fixed">
       <thead>
         <tr>
-          <th className="py-3 px-4 text-left text-sm font-medium text-gray-600 w-[15%]">
+          <th className="py-3 px-4 text-left text-sm font-medium text-[#6E7582] w-[16.66%]">
             Domain Name
           </th>
-          <th className="py-3 px-4 text-left text-sm font-medium text-gray-600 w-[15%]">
+          <th className="py-3 px-4 text-left text-sm font-medium text-[#6E7582] w-[16.66%]">
             Registrar
           </th>
-          <th className="py-3 px-4 text-left text-sm font-medium text-gray-600 w-[17.5%]">
+          <th className="py-3 px-4 text-left text-sm font-medium text-[#6E7582] w-[16.66%]">
             Registration Date
           </th>
-          <th className="py-3 px-4 text-left text-sm font-medium text-gray-600 w-[17.5%]">
+          <th className="py-3 px-4 text-left text-sm font-medium text-[#6E7582] w-[16.66%]">
             Expiration Date
           </th>
-          <th className="py-3 px-4 text-left text-sm font-medium text-gray-600 w-[15%]">
+          <th className="py-3 px-4 text-left text-sm font-medium text-[#6E7582] w-[16.66%]">
             Domain Age
           </th>
-          <th className="py-3 px-4 text-left text-sm font-medium text-gray-600 w-[20%]">
+          <th className="py-3 px-4 text-left text-sm font-medium text-[#6E7582] w-[16.66%]">
             Hostnames
           </th>
         </tr>
       </thead>
-      <tbody className="divide-y divide-gray-200">
-        <tr>
-          <td className="py-3 px-4 text-sm text-gray-900">{data.domainName}</td>
-          <td className="py-3 px-4 text-sm text-gray-900">{data.registrarName}</td>
-          <td className="py-3 px-4 text-sm text-gray-900">
+      <tbody>
+        <tr className="transition-colors duration-200 hover:bg-[#F5F7FA]/50">
+          <td className="py-3 px-4 text-sm text-[#2D3142] break-words">
+            {data.domainName}
+          </td>
+          <td className="py-3 px-4 text-sm text-[#2D3142] break-words">
+            {data.registrarName}
+          </td>
+          <td className="py-3 px-4 text-sm text-[#2D3142] break-words">
             {data.registrarRegistrationDate}
           </td>
-          <td className="py-3 px-4 text-sm text-gray-900">{data.expirationDate}</td>
-          <td className="py-3 px-4 text-sm text-gray-900">
+          <td className="py-3 px-4 text-sm text-[#2D3142] break-words">
+            {data.expirationDate}
+          </td>
+          <td className="py-3 px-4 text-sm text-[#2D3142] break-words">
             {data.estimatedDomainAge}
           </td>
-          <td className="py-3 px-4 text-sm text-gray-900">
+          <td className="py-3 px-4 text-sm text-[#2D3142] break-words">
             {formatHostnames(data.hostnames)}
           </td>
         </tr>
@@ -54,33 +60,37 @@ const DomainInfoTable = ({ data }) => {
 };
 
 const ContactInfoTable = ({ data }) => (
-  <table className="w-full divide-y divide-gray-200">
+  <table className="min-w-full table-fixed">
     <thead>
       <tr>
-        <th className="py-3 px-4 text-left text-sm font-medium text-gray-600 w-1/4">
+        <th className="py-3 px-4 text-left text-sm font-medium text-[#6E7582] w-1/4">
           Registrant Name
         </th>
-        <th className="py-3 px-4 text-left text-sm font-medium text-gray-600 w-1/4">
+        <th className="py-3 px-4 text-left text-sm font-medium text-[#6E7582] w-1/4">
           Technical Contact
         </th>
-        <th className="py-3 px-4 text-left text-sm font-medium text-gray-600 w-1/4">
+        <th className="py-3 px-4 text-left text-sm font-medium text-[#6E7582] w-1/4">
           Administrative Contact
         </th>
-        <th className="py-3 px-4 text-left text-sm font-medium text-gray-600 w-1/4">
+        <th className="py-3 px-4 text-left text-sm font-medium text-[#6E7582] w-1/4">
           Contact Email
         </th>
       </tr>
     </thead>
-    <tbody className="divide-y divide-gray-200">
-      <tr>
-        <td className="py-3 px-4 text-sm text-gray-900">{data.registrantName}</td>
-        <td className="py-3 px-4 text-sm text-gray-900">
+    <tbody>
+      <tr className="transition-colors duration-200 hover:bg-[#F5F7FA]/50">
+        <td className="py-3 px-4 text-sm text-[#2D3142] break-words">
+          {data.registrantName}
+        </td>
+        <td className="py-3 px-4 text-sm text-[#2D3142] break-words">
           {data.technicalContactName}
         </td>
-        <td className="py-3 px-4 text-sm text-gray-900">
+        <td className="py-3 px-4 text-sm text-[#2D3142] break-words">
           {data.administrativeContactName}
         </td>
-        <td className="py-3 px-4 text-sm text-gray-900">{data.contactEmail}</td>
+        <td className="py-3 px-4 text-sm text-[#2D3142] break-words">
+          {data.contactEmail}
+        </td>
       </tr>
     </tbody>
   </table>
@@ -93,10 +103,10 @@ const ResultsDisplay = ({ data, type }) => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="w-full mt-8"
+      className="w-[95%] max-w-7xl mx-auto mt-8"
     >
-      <div className="bg-white/50 backdrop-blur-sm rounded-lg shadow-lg p-6">
-        <div className="overflow-auto">
+      <div className="bg-white/80 backdrop-blur-md rounded-lg shadow-lg p-6 overflow-x-auto ring-1 ring-black/5">
+        <div className="min-w-[800px] lg:min-w-0">
           {type === "domain_info" ? (
             <DomainInfoTable data={data} />
           ) : (
