@@ -35,8 +35,21 @@ Before you begin, ensure you have the following installed:
 
 - Python 3.9 or higher
 - Node.js 16 or higher
-- npm or yarn
-- Git
+- npm 7 or higher
+
+## Project Structure
+
+```
+domain-scout/
+├── backend/           # FastAPI backend
+│   ├── app/          # Application code
+│   ├── requirements.txt
+│   └── .env.example
+├── frontend/         # React frontend
+│   ├── src/
+│   └── package.json
+└── deploy.sh        # Deployment script
+```
 
 ## Installation
 
@@ -70,7 +83,7 @@ CORS_ORIGINS=http://localhost:5173 #in local
 
 ```bash
 cd ../frontend
-npm install 
+npm install
 ```
 
 5. Configure frontend environment:
@@ -102,12 +115,99 @@ npm run dev  # or: yarn dev
 
 The frontend will start on http://localhost:5173
 
-## Usage
+## Deployment
 
-1. Open your browser and navigate to http://localhost:5173
-2. Enter a domain name in the search field
-3. Toggle between "Domain Info" and "Contact Info" to see different information
-4. Click "Search" to retrieve the domain information
+There are two ways to run the deployment script:
+
+### Option 1: Using bash directly
+
+```bash
+bash deploy.sh
+```
+
+### Option 2: Making the script executable first
+
+```bash
+chmod +x deploy.sh
+./deploy.sh
+```
+
+The deployment script will automatically:
+
+1. Build the frontend
+2. Create and activate Python virtual environment
+3. Install and update all dependencies
+4. Start the application at http://localhost:5000
+
+## Environment Setup
+
+Before running the deployment script, make sure to:
+
+1. Copy both `.env.example` files to `.env` in their respective directories:
+
+   - `backend/.env`
+   - `frontend/.env`
+
+2. Configure your environment variables in the `.env` files:
+
+### Backend (.env)
+
+```
+WHOIS_API_KEY=your_whois_api_key
+WHOIS_API_URL=whois_api_url
+CORS_ORIGINS=http://localhost:5000,http://localhost:5173
+```
+
+### Frontend (.env)
+
+```
+VITE_API_URL=
+```
+
+## Access Points
+
+After deployment:
+
+- Main application: http://localhost:5000
+- API documentation: http://localhost:5000/api/docs
+- API ReDoc: http://localhost:5000/api/redoc
+
+## Troubleshooting
+
+1. If you see "Address already in use" error:
+
+   - Find the process using port 5000: `lsof -i:5000`
+   - Stop the existing process or choose a different port
+
+2. If static files are not loading:
+
+   - Check if the frontend build was successful in `frontend/dist/`
+   - Verify file permissions
+
+3. If you encounter CORS issues:
+   - Ensure CORS_ORIGINS in backend/.env includes your frontend URL
+
+## Development Setup
+
+For development purposes, you can run the frontend and backend separately:
+
+### Backend Development
+
+```bash
+cd backend
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python run.py
+```
+
+### Frontend Development
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
 ## API Endpoints
 
@@ -120,25 +220,12 @@ Query Parameters:
 - `domain`: The domain name to look up
 - `data_type`: Type of information to retrieve (`domain_info` or `contact_info`)
 
-## Deployment
+## API Documentation
 
-### Backend Deployment
+The API documentation is automatically generated and available at:
 
-1. Set up a Python environment on your server
-2. Install dependencies from requirements.txt
-3. Configure environment variables
-4. Run with a production ASGI server like Uvicorn or Gunicorn
-
-### Frontend Deployment
-
-1. Build the production bundle:
-
-```bash
-cd frontend
-npm run build  # or: yarn build
-```
-
-2. Deploy the contents of the `dist` directory to your web server
+- OpenAPI (Swagger UI): `/api/docs`
+- ReDoc: `/api/redoc`
 
 ## Acknowledgments
 
