@@ -12,6 +12,11 @@ const SearchForm = () => {
   const [results, setResults] = useState(null);
   const [error, setError] = useState(null);
 
+  const handleToggleChange = (checked) => {
+    setIsContactInfo(checked);
+    setResults(null); 
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!domain) return;
@@ -34,9 +39,9 @@ const SearchForm = () => {
   };
 
   return (
-    <div className="w-full max-w-4xl px-4">
+    <div className="w-full flex flex-col items-center">
       <motion.div
-        className={`transition-all duration-300 ${
+        className={`w-1/2 transition-all duration-300 ${
           results ? "transform -translate-y-20" : ""
         }`}
         initial={{ opacity: 0, y: 20 }}
@@ -64,7 +69,7 @@ const SearchForm = () => {
             </span>
             <Switch
               checked={isContactInfo}
-              onChange={setIsContactInfo}
+              onChange={handleToggleChange}
               className={`${
                 isContactInfo ? "bg-blue-500" : "bg-gray-200"
               } relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-300 ease-in-out cursor-pointer`}
@@ -97,6 +102,7 @@ const SearchForm = () => {
           </div>
         </form>
       </motion.div>
+
       {error && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -109,10 +115,12 @@ const SearchForm = () => {
 
       <AnimatePresence>
         {results && (
-          <ResultsDisplay
-            data={results}
-            type={isContactInfo ? "contact_info" : "domain_info"}
-          />
+          <div className="w-3/4">
+            <ResultsDisplay
+              data={results}
+              type={isContactInfo ? "contact_info" : "domain_info"}
+            />
+          </div>
         )}
       </AnimatePresence>
     </div>
