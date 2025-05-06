@@ -123,10 +123,12 @@ def format_contact_info(whois_data):
             break
 
     return {
-        "registrantName": _get_nested_value(record, "registrant.name"),
-        "technicalContactName": _get_nested_value(record, "technicalContact.name"),
-        "administrativeContactName": _get_nested_value(record, "administrativeContact.name"),
-        "contactEmail": contact_email if contact_email else "N/A"
+        "data" : {
+            "registrantName": _get_nested_value(record, "registrant.name"),
+            "technicalContactName": _get_nested_value(record, "technicalContact.name"),
+            "administrativeContactName": _get_nested_value(record, "administrativeContact.name"),
+            "contactEmail": contact_email if contact_email else "N/A"
+        }
     }
 
 def _get_nested_value(data, key_path):
